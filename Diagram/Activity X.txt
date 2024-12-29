@@ -1,0 +1,73 @@
+@startuml
+|Admin|
+start
+:Login ke Sistem;
+if (Autentikasi Berhasil?) then (Ya)
+    :Akses Dashboard Admin;
+    |Database|
+    :Verifikasi Kredensial Admin;
+    |Admin|
+    fork
+        |Admin|
+        :Kelola Data Orang Tua;
+        |Database|
+        :Tambah/Update/Hapus Data Orang Tua;
+        detach
+    fork again
+        |Admin|
+        :Kelola Data Kader;
+        |Database|
+        :Tambah/Update/Hapus Data Kader;
+        detach
+    fork again
+        |Admin|
+        :Kelola Data Balita;
+        |Database|
+        :Tambah/Update/Hapus Data Balita;
+        detach
+    fork again
+        |Admin|
+        :Kelola Kartu Sehat;
+        |Database|
+        :Tambah/Update/Hapus Data Kartu Sehat;
+        detach
+    fork again
+        |Admin|
+        :Kelola Konsultasi Online;
+        |Database|
+        :Pantau/Update Data Konsultasi;
+        detach
+    fork again
+        |Admin|
+        :Kelola Pengukuran Balita;
+        |Database|
+        :Pantau/Update Data Pengukuran;
+        detach
+    fork again
+        |Admin|
+        :Lihat Grafik Pertumbuhan;
+        |Database|
+        :Analisis dan Rekap Data Grafik;
+        detach
+    fork again
+        |Admin|
+        :Kelola Laporan Rekapitulasi;
+        |Database|
+        :Buat/Update/Hapus Laporan Rekapitulasi;
+        detach
+    fork again
+        |Admin|
+        :Kelola Data Puskesmas;
+        |Database|
+        :Tambah/Update/Hapus Data Puskesmas;
+        detach
+    endfork
+    |Admin|
+    :Logout dari Sistem;
+else (Tidak)
+    |Admin|
+    :Tampilkan Error Login;
+    :Kembali ke Login;
+endif
+stop
+@enduml

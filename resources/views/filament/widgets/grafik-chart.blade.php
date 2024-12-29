@@ -1,0 +1,3 @@
+<div>
+    {!! $this->chart() !!}
+</div>

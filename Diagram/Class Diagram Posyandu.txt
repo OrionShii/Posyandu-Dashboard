@@ -1,0 +1,102 @@
+@startuml
+
+class OrangTua {
+    +id: bigint
+    +username: varchar
+    +no_telp: varchar
+    +email: varchar
+    +nik_ortu: varchar
+    +created_at: timestamp
+    +updated_at: timestamp
+}
+
+class Balita {
+    +id: bigint
+    +id_ortu: bigint
+    +nama: varchar
+    +nik_balita: varchar
+    +usia_balita: int
+    +tgl_lahir_balita: date
+    +created_at: timestamp
+    +updated_at: timestamp
+}
+
+class KartuSehat {
+    +id: bigint
+    +id_ortu: bigint
+    +masa_berlaku: date
+    +status_kartu: enum
+    +created_at: timestamp
+    +updated_at: timestamp
+}
+
+class Kader {
+    +id: bigint
+    +username: varchar
+    +no_telp: varchar
+    +email: varchar
+    +created_at: timestamp
+    +updated_at: timestamp
+}
+
+class Pengukuran {
+    +id: bigint
+    +id_balita: bigint
+    +tinggi_badan: decimal
+    +berat_badan: decimal
+    +tanggal: date
+    +created_at: timestamp
+    +updated_at: timestamp
+}
+
+class Grafik {
+    +id: bigint
+    +id_balita: bigint
+    +id_pengukuran: bigint
+    +tanggal: date
+    +created_at: timestamp
+    +updated_at: timestamp
+}
+
+class LaporanRekapitulasi {
+    +id: bigint
+    +id_pengukuran: bigint
+    +id_kader: bigint
+    +id_puskesmas: bigint
+    +tanggal: date
+    +isi_laporan: text
+    +foto_kegiatan: varchar
+    +created_at: timestamp
+    +updated_at: timestamp
+}
+
+class Puskesmas {
+    +id: bigint
+    +username: varchar
+    +no_telp: varchar
+    +email: varchar
+    +created_at: timestamp
+    +updated_at: timestamp
+}
+
+class KonsultasiOnline {
+    +id: bigint
+    +id_ortu: bigint
+    +id_kader: bigint
+    +keluhan: text
+    +tanggal: date
+    +created_at: timestamp
+    +updated_at: timestamp
+}
+
+OrangTua "1" -- "1" KartuSehat : owns
+OrangTua "1" -- "0..*" Balita : has
+Balita "1" -- "0..*" Pengukuran : has
+Balita "1" -- "0..*" Grafik : has
+Pengukuran "1" -- "0..*" LaporanRekapitulasi : generates
+Grafik "1" -- "0..*" LaporanRekapitulasi : generates
+Kader "1" -- "0..*" LaporanRekapitulasi : submits
+Kader "0..*" -- "0..*" KonsultasiOnline : manages
+OrangTua "0..*" -- "0..*" KonsultasiOnline : request
+Puskesmas "1" -- "0..*" LaporanRekapitulasi : oversees
+@enduml

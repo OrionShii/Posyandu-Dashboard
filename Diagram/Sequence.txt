@@ -1,0 +1,53 @@
+@startuml
+actor Admin
+participant Website as Web
+participant Database as DB
+
+Admin -> Web: Login ke Sistem
+Web -> DB: Verifikasi kredensial
+DB --> Web: Hasil autentikasi (Berhasil/Gagal)
+alt Autentikasi Berhasil
+    Admin -> Web: Akses Dashboard Admin
+    loop Kelola Data
+        Admin -> Web: Kelola Data Orang Tua
+        Web -> DB: Tambah/Update/Hapus Data Orang Tua
+        DB --> Web: Konfirmasi perubahan
+        
+        Admin -> Web: Kelola Data Kader
+        Web -> DB: Tambah/Update/Hapus Data Kader
+        DB --> Web: Konfirmasi perubahan
+        
+        Admin -> Web: Kelola Data Balita
+        Web -> DB: Tambah/Update/Hapus Data Balita
+        DB --> Web: Konfirmasi perubahan
+        
+        Admin -> Web: Kelola Kartu Sehat
+        Web -> DB: Tambah/Update/Hapus Data Kartu Sehat
+        DB --> Web: Konfirmasi perubahan
+        
+        Admin -> Web: Kelola Konsultasi Online
+        Web -> DB: Pantau/Update Data Konsultasi
+        DB --> Web: Konfirmasi perubahan
+        
+        Admin -> Web: Kelola Pengukuran Balita
+        Web -> DB: Pantau/Update Data Pengukuran
+        DB --> Web: Konfirmasi perubahan
+        
+        Admin -> Web: Lihat Grafik Pertumbuhan
+        Web -> DB: Analisis Data Grafik
+        DB --> Web: Data Grafik Pertumbuhan
+        
+        Admin -> Web: Kelola Laporan Rekapitulasi
+        Web -> DB: Buat/Update/Hapus Laporan
+        DB --> Web: Konfirmasi perubahan
+        
+        Admin -> Web: Kelola Data Puskesmas
+        Web -> DB: Tambah/Update/Hapus Data Puskesmas
+        DB --> Web: Konfirmasi perubahan
+    end
+    Admin -> Web: Logout dari Sistem
+else Autentikasi Gagal
+    Web -> Admin: Tampilkan Error Login
+    Admin -> Web: Kembali ke halaman Login
+end
+@enduml
