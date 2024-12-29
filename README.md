@@ -62,4 +62,4 @@ https://github.com/user-attachments/assets/faa1dc0a-e678-4174-a268-2a6ef3396dbe
 Kontribusi sangat kami hargai! Jika Anda menemukan bug atau ingin menambahkan fitur baru, silakan buat **issue** atau **pull request**.
 
 ## 📜 Lisensi
-## Okky Tri Wahyuda ( 2024 )
+## © Okky Tri Wahyuda ( 2024 )
